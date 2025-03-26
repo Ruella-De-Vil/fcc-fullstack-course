@@ -191,3 +191,53 @@ function removeProduct(product, quantity){
 } 
 
 removeProduct("Egg", 10);
+
+
+//Build a Password Generator App
+
+/*In this lab, you'll practice using functions by building a random password generator.
+
+Objective: Fulfill the user stories below and get all the tests to pass to complete the lab.
+
+User Stories:
+
+You should create a function called generatePassword that takes a parameter, indicating the length of generated password. You can name the parameter whatever you like.
+Your function should return a string which represents a randomly generated password. You should use the following string and different Math methods to help you return a new string with random characters in it: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*().
+You should define a variable called password and assign it the result of calling the generatePassword function with a numeric argument that represents the desired password length.
+You should have a console.log that logs the message "Generated password:" followed by the password variable.*/
+
+        /* *****my thoughts {take parameter number to use as loop condition.
+  
+  in the loop, each interation should get a random character from the suitable string of characters which are coverted into an array and selected randomly.
+  
+  the random caracter selected should then be pushed into an array for the password
+  
+  the password array should then be converted to a string and returned when the function is called}
+  */
+
+const generatePassword = (passwordLength) => {
+    let suitableCharStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+  
+  //takes string and converts to an array of each character in the string
+    let suitableCharStrArr = suitableCharStr.split('');
+  
+  //empty array to store the random characters that will form the password of specific length as determind by the input argument
+    let passwordArr = [];
+  
+  //for loop to produce randome characters to be pushed to array
+    for(let i = 0; i < passwordLength; i++){
+  
+      //gets a random index of a character from the array
+    let randomCharIndex = Math.floor(Math.random()*suitableCharStrArr.length);
+  
+      passwordArr.push(suitableCharStrArr[randomCharIndex])
+    }
+  
+  //returns the password as a string
+    return passwordArr.join('');
+  
+  }
+  
+  const password = generatePassword(8);
+  console.log("Generated password:" + password)
+  
