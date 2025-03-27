@@ -244,7 +244,7 @@ const generatePassword = (passwordLength) => {
 
 
   // HIGHER ORDER FUNCTIONS AND CALLBACKS
-
+                                                       //     !!!!!!!!!    Difference between Higher order function, callback function and Closures??????
 
   /*Build a Library manager ----- WORKSHOP fCC Solution*/
   /* Array methods (forEach(), reduce(), map(), filter()*/
@@ -339,3 +339,52 @@ The function must return an array that contains the books by a particular author
   console.log(bookSummaries);
   console.log(booksByArvidKahl);
   console.log(totalPagesOfBooksInLibrary);
+
+  //Build a Book Organizer
+  /*
+  User Stories:
+You should have an array of objects named books where each object in the array should have a string title, another string authorName, and a number releaseYear.
+Your books array should have a minimum of three objects.
+You should have a callback function named sortByYear that accepts two books as parameter for sorting the array.
+The sortByYear function should return -1 if the releaseYear of the first book is smaller than that of the second book.
+The sortByYear function should return 1 if the releaseYear of the first book is bigger than that of the second book.
+The sortByYear function should return 0 if both releaseYear values are equal.
+You should filter out books written after a certain year such as 1950 from the books array and save the filtered array in a new array named filteredBooks.
+You should sort the books in the filteredBooks array according to their releaseYear in ascending order. You learned in a prior lecture video that the sort() method will sort the array in place. This means the filteredBooks array will be mutated.
+  */
+
+const books = [
+    {
+      "title": "Hello",
+      "authorName": "A",
+      "releaseYear": 1999
+    },
+    {
+      "title": "Hi",
+      "authorName": "B",
+      "releaseYear": 2002
+    },
+    {
+      "title": "Hey",
+      "authorName": "C",
+      "releaseYear": 2001
+    }
+  ]
+  
+  function sortByYear(book1, book2){
+    if(book1.releaseYear - book2.releaseYear < 0){
+      return -1;
+    }  else if(book1.releaseYear - book2.releaseYear > 0) {
+      return 1;
+  } else {
+    return 0;
+  }
+  }
+  
+  //filter books released after a specific year (in this case 2000)
+  let filteredBooks = books.filter((book) => book.releaseYear >= 2000);
+  
+  //You should call the sort higher order function by passing the sortByYear callback function on the filteredBooks array.
+  filteredBooks.sort(sortByYear);
+  
+  console.log(filteredBooks);
