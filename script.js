@@ -388,3 +388,139 @@ const books = [
   filteredBooks.sort(sortByYear);
   
   console.log(filteredBooks);
+
+
+
+
+  //DOM Manipulation and Events
+  //Build A Storytelling App (Workshop) ***HTML and CSS Preset by fcc
+
+  const storyContainer = document.querySelector(".story-container");
+
+const scaryStoryBtn = document.getElementById("scary-btn");
+const funnyStoryBtn = document.getElementById("funny-btn");
+const adventureStoryBtn = document.getElementById("adventure-btn");
+
+const resultParagraph = document.getElementById("result");
+
+const storyObj = {
+  scary: {
+    story: `In the dark woods, a group of friends stumbled upon an old, abandoned cabin. They enter the cabin and awaken something malevolent that had been dormant for centuries.`,
+    borderColor: "#ee4b2b",
+  },
+  funny: {
+    story: `During a camping trip, Mark decided to show off his culinary skills by cooking dinner over an open fire. However, his attempt caused him to burn the dinner as well as his eyebrows off.`,
+    borderColor: "#f1be32",
+  },
+  adventure: {
+    story: `Lost in the heart of the Amazon rain forest, Sarah and Jake stumbled upon an ancient temple. They braved deadly traps and encountered strange wildlife, all while deciphering cryptic clues left behind by a mysterious civilization.`,
+    borderColor: "#acd157"
+  },
+};
+
+function displayStory(genre) {
+  if (storyObj[genre]) {
+    // Set the story text
+    const result = document.getElementById("result")
+    result.textContent = storyObj[genre].story;
+    
+    // Set the border color
+    storyContainer.style.borderColor = storyObj[genre].borderColor;
+}
+}
+
+/* fcc solution
+function displayStory(genre) {
+  if (storyObj.hasOwnProperty(genre)) {
+    const result = document.getElementById("result")
+    result.textContent = storyObj[genre].story;
+    storyContainer.style.borderColor = storyObj[genre].borderColor;
+  }
+}
+  */
+
+scaryStoryBtn.addEventListener("click",() => displayStory("scary"));
+funnyStoryBtn.addEventListener("click",() => displayStory("funny"));
+adventureStoryBtn.addEventListener("click",() => displayStory("adventure"));
+
+
+//Build a Favorite Icon Toggler (Lab)
+/*
+In this lab you will use JavaScript click events to toggle the appearance of a favorite icon. When the heart icon is clicked, the appearance of the heart changes from empty to filled, and vice versa.
+
+Fulfill the user stories below and get all the tests to pass to complete the lab. Do not copy this demo project.
+
+User Stories:
+
+You should have an unordered list with three items.
+The unordered list should have the class item-list.
+The three list items should contain the item name followed by a span element with the class favorite-icon.
+The span element should contain the code &#9825; initially to represent an empty heart.
+When a span element containing a heart is clicked, you should add the filled class to the clicked span if it's not already present, and remove it, if it is.
+When a span element containing a heart is clicked, the heart symbol should toggle between &#9825; (empty heart) and &#10084; (filled heart), depending on its current state.
+*/
+
+//HTML below for this lab
+/*
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Favorite Icon Toggle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1 style="font-size: 1em; color: maroon">Build a Favorite Icon Toggler</h1>
+    <h2>Some Faves</h2>
+    <ul class="item-list">
+        <li>Spicy food <span class="favorite-icon">&#9825;</span></li>
+        <li>Skipping <span class="favorite-icon">&#9825;</span></li>
+        <li>Drawing <span class="favorite-icon">&#9825;</span></li>
+    </ul>
+    <script src="script.js"></script>
+</body>
+
+</html>
+*/
+const hearts = document.querySelectorAll(".favorite-icon");
+
+//forEach() and querySelectorAll() used as there are multiple "heart"s, otherwise it will only select the first matching element
+hearts.forEach(heart => {
+    heart.addEventListener("click", function() {
+        if (this.classList.contains("filled")) {
+            this.classList.remove("filled");
+            this.innerHTML = "&#9825;";
+        } else {
+            this.classList.add("filled");
+            this.innerHTML = "&#10084;";
+        }
+    });
+});   /*
+
+1.Selects all elements with class "favorite-icon"
+
+2.For each heart icon:
+
+If it has the "filled" class:
+ Removes the "filled" class
+ Changes innerHTML to empty heart (&#9825;)
+
+If it doesn't have the "filled" class:
+ Adds the "filled" class
+ Changes innerHTML to filled heart (&#10084;)
+
+This matches the requirements exactly by:
+  Checking the class first, not the innerHTML
+  Using the specific HTML entities mentioned (&#9825; and &#10084;)
+  Toggling the "filled" class appropriately
+  Working for all heart icons in the list
+  
+  */
+
+
+//Build A Musical Instrument Filter (Workshop)
+
+
+
