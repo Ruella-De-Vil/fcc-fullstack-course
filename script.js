@@ -522,5 +522,206 @@ This matches the requirements exactly by:
 
 //Build A Musical Instrument Filter (Workshop)
 
+const instrumentsArr = [
+  { category: "woodwinds", instrument: "Flute", price: 500 },
+  { category: "woodwinds", instrument: "Clarinet", price: 200 },
+  { category: "woodwinds", instrument: "Oboe", price: 4000 },
+  { category: "brass", instrument: "Trumpet", price: 200 },
+  { category: "brass", instrument: "Trombone", price: 300 },
+  { category: "brass", instrument: "French Horn", price: 4300 },
+  { category: "percussion", instrument: "Drum Set", price: 500 },
+  { category: "percussion", instrument: "Xylophone", price: 3000 },
+  { category: "percussion", instrument: "Cymbals", price: 200 },
+  { category: "percussion", instrument: "Marimba", price: 3000 }
+]
 
+const selectContainer = document.querySelector("select");
+const productsContainer = document.querySelector(".products-container");
+
+function instrumentCards(instrumentCategory) {
+
+  function checkCategory(instrument){
+    if( instrumentCategory === 'all'){
+      return true;
+    }
+    return instrument.category === instrumentCategory;
+  }
+
+  const filteredInstruments = instrumentsArr.filter(checkCategory);
+  return filteredInstruments;
+}
+
+selectContainer.addEventListener("change", () => {
+  console.log(instrumentCards(selectContainer.value));
+});
+
+
+
+//Build A Real Time Counter (Lab)
+
+/* HTML + CSS
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Time Counter</title>
+    <link href="styles.css" rel="stylesheet"></link>
+</head>
+
+<body>
+    <h1>Character Counter</h1>
+    <textarea id="text-input" maxlength=50></textarea>
+    <p id="char-count">Character Count: <span id="current-count">0</span>/50</p>
+
+    <script src="script.js"></script>
+</body>
+
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+body{
+  background-color: beige;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+textarea{
+  height: 8em;
+  width: 18em;
+}
+
+** end of undefined **
+
+
+*/
+
+const input = document.getElementById("text-input");
+
+input.addEventListener('change', getLength)
+
+function getLength(){
+
+  const charLength = input.value.length;
+
+return updateChar(charLength);
+
+}
+
+function updateChar(length){
+  let count = document.getElementById('current-count');
+
+count.innerHTML = `${length}`;
+
+if (length >= 50){
+input.value = input.value.substring(0, 50)
+
+  document.getElementById('char-count').style.color = 'red';
+}
+
+}
+
+//
+
+
+/*** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Lightbox Viewer</title>
+    <link href="styles.css" rel="stylesheet"></link>
+</head>
+
+<body>
+    <h1>fCC Gallery</h1>
+    <div class="gallery">
+        <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/stonehenge-thumbnail.jpg">
+        <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/storm-thumbnail.jpg">
+        <img class="gallery-item" src="https://cdn.freecodecamp.org/curriculum/labs/trees-thumbnail.jpg">
+    </div>
+    <div class="lightbox">
+        <span id="close">&times;</span>
+        <img class ="lightbox-image"id="lightbox-image">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+body {
+  text-align: center;
+}
+
+.gallery {
+  display: flex;
+  gap: 0.5em
+}
+
+.gallery-item {
+  overflow: hidden;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(39, 33, 33, 0.486);
+  display: none;
+}
+
+.lightbox-image {
+  margin: auto;
+  height: auto;
+  width: 70%;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+const gallery = document.querySelectorAll(".gallery-item");
+
+const dialog = document.querySelector(".lightbox")
+;
+
+const exitModal = document.getElementById("close");
+
+gallery.forEach(image => {image.addEventListener("click", modal);});
+
+function modal(event){
+  dialog.style.display = "flex";
+  
+  const modalImg = document.getElementById("lightbox-image")
+
+  const fullImage = event.target.src.replace('-thumbnail', '');
+    modalImg.src = fullImage;
+
+}
+
+exitModal.addEventListener("click", closeModal)
+
+function closeModal(){
+  dialog.style.display = "none";
+}
+
+dialog.addEventListener("click",closeModal)
+
+** end of undefined ***/
 
