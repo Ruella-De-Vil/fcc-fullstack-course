@@ -1169,3 +1169,252 @@ const resetGame = () => {
   roundResultsMsg.innerText = '';
 }
 */
+
+
+
+//Build a Set of Football Team Cards (Lab)
+/*
+Build an app that is functionally similar to this example project. Try not to copy the example project, give it your own personal style.
+
+In this lab, you will build a set of football team cards. The user should be able to use the dropdown menu and filter between the different players based on their positions.
+
+Fulfill the user stories below and get all the tests to pass to complete the lab.
+
+User Stories:
+
+You should create a footballTeam object with the following properties: team, year, headCoach, players.
+
+The team property should contain the name of the team as a string.
+
+The year property should contain the year as a number.
+
+The headCoach property should contain the name of the head coach as a string.
+
+The players property should be an array containing at least four elements.
+
+Each element in the players array should be an object with properties name, position, isCaptain.
+
+The name property should contain the name of the player as a string.
+
+The position property should have one of the following values: "forward", "midfielder", "defender", or "goalkeeper".
+
+The isCaptain property should have value of a boolean. One of the players should have their isCaptain property set to true.
+
+You should display the coach, team and year values on the page. These values should be displayed in the HTML elements with the id values of head-coach, team and year.
+
+You should display the players data on the page inside the #player-cards element, each player should be displayed in a div with class of player-card, and nested in it, an h2 containing the name of the player, and (Captain) in case of the player being captain, and a p containing Position: and the position of the player.
+
+<div class="player-card">
+  <h2>Sergio Batista</h2>
+  <p>Position: midfielder</p>
+</div>
+<div class="player-card">
+  <h2>(Captain) Diego Maradona</h2>
+  <p>Position: midfielder</p>
+</div>
+When the dropdown menu is used to select one of the positions, only players of that position should be shown. If the "All Players" option is selected, then all of the players should display on the page.*/
+
+// MY SOLUTION BELOW (JS (HTML and CSS was provided))***************
+
+/* -----HTML
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Build a Set of Football Team Cards
+    </title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Team stats</h1>
+    <main>
+      <div class="team-stats">
+        <p>Team: <span id="team"></span></p>
+        <p>Year: <span id="year"></span></p>
+        <p>Head coach: <span id="head-coach"></span></p>
+      </div>
+      <label class="options-label" for="players">Filter Teammates:</label>
+      <select name="players" id="players">
+        <option value="all">All Players</option>
+        <option value="forward">Position Forward</option>
+        <option value="midfielder">Position Midfielder</option>
+        <option value="defender">Position Defender</option>
+        <option value="goalkeeper">Position Goalkeeper</option>
+      </select>
+      <div class="cards" id="player-cards"></div>
+    </main>
+    <footer>&copy; freeCodeCamp</footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+*/
+
+/*   -----CSS
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-grey: #0a0a23;
+  --light-grey: #f5f6f7;
+  --white: #ffffff;
+  --black: #000;
+}
+
+body {
+  background-color: var(--dark-grey);
+  text-align: center;
+  padding: 10px;
+}
+
+.title,
+.options-label,
+.team-stats,
+footer {
+  color: var(--white);
+}
+
+.title {
+  margin: 1.3rem 0;
+}
+
+.team-stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  margin: 1.2rem 0;
+}
+
+.options-label {
+  font-size: 1.2rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-card {
+  background-color: var(--light-grey);
+  padding: 1.3rem;
+  margin: 1.2rem;
+  width: 300px;
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .team-stats {
+    flex-direction: column;
+  }
+}
+*/
+
+const footballTeam = {
+  team: "Ella",
+  year: 2025,
+  headCoach: "Rues",
+  players: [
+    {
+      name: "Violet",
+      position: "forward",
+      isCaptain: false
+    },
+    {
+      name: "Rose",
+      position: "midfielder",
+      isCaptain: true
+    },
+    {
+      name: "Daisy",
+      position: "defender",
+      isCaptain: false
+    },
+    {
+      name: "Lily",
+      position: "goalkeeper",
+      isCaptain: false
+    }
+  ]
+}
+
+let team = document.getElementById('team');
+let coach = document.getElementById('head-coach');
+let year = document.getElementById('year');
+
+team.innerText = footballTeam.team;
+coach.innerText = footballTeam.headCoach;
+year.innerText = footballTeam.year;
+
+let cards = document.getElementById('player-cards');
+cards.innerHTML = '';
+
+let playersArr = footballTeam.players;
+
+function allPlayers(){
+  
+playersArr.forEach(player => {
+
+  if(player.isCaptain){
+  cards.innerHTML += `
+  <div class="player-card">
+  <h2>(Captain) ${player.name}</h2>
+  <p>Position: ${player.position}</p>
+</div>` 
+} else {
+  cards.innerHTML += `
+  <div class="player-card">
+  <h2>${player.name}</h2>
+  <p>Position: ${player.position}</p>
+</div>`
+}
+})
+}
+
+allPlayers();
+
+
+function displayPlayers(position){
+playersArr.forEach(player => {
+  
+  if(position === player.position && player.isCaptain){
+  cards.innerHTML = `
+  <div class="player-card">
+  <h2>(Captain) ${player.name}</h2>
+  <p>Position: ${player.position}</p>
+</div>` 
+} else if(position === player.position){
+  cards.innerHTML = `
+  <div class="player-card">
+  <h2>${player.name}</h2>
+  <p>Position: ${player.position}</p>
+</div>` 
+} else if (position === 'all') {
+  cards.innerHTML = ``;
+
+  return allPlayers()
+}
+
+}) 
+}
+
+let selectPlayers = document.getElementById("players");
+selectPlayers.addEventListener('change', (e) => {
+  let positionSelected = e.target.value;
+  displayPlayers(positionSelected);
+})
+
+///////////////////////////////////////
+
