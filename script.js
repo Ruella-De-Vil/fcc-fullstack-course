@@ -392,7 +392,10 @@ filteredBooks.sort(sortByYear);
 
 console.log(filteredBooks);
 
-//DOM Manipulation and Events
+
+
+
+//DOM MANIPULATION AND EVENTS
 //Build A Storytelling App (Workshop) ***HTML and CSS Preset by fcc
 
 const storyContainer = document.querySelector(".story-container");
@@ -1416,5 +1419,97 @@ selectPlayers.addEventListener('change', (e) => {
   displayPlayers(positionSelected);
 })
 
-///////////////////////////////////////
+///////
+
+//DEBUGGING
+
+///////
+
+// BASIC REGEX (Regular Expressions)
+
+/*Regular expressions, often shortened to "regex" or "regexp", are patterns that help programmers match, search, and replace text. Regular expressions are powerful, but can be difficult to understand because they use so many special characters.*/
+
+//Build a spam filter (Workshop) ***solution @fcc --- learned and applied special characters
+
+
+//Build a Palindrome Checker (Lab)
+
+/*
+A palindrome is a word or phrase that can be read the same way forwards and backwards, ignoring punctuation, case, and spacing.
+
+Note: You'll need to remove all non-alphanumeric characters (punctuation, spaces and symbols) and turn everything into the same case (lower or upper case) in order to check for palindromes.
+
+Fulfill the user stories below and get all the tests to pass to complete the lab. ***fcc for user stories
+*/
+
+/* My solution
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Palindrome Checker</title>
+    <link href="styles.css" rel="stylesheet"></link>
+</head>
+
+<body>
+    <main>
+        <h1>Palindrome?Yes or No?</h1>
+        <form>
+            <input type="text" id="text-input" placeholder="Please enter text...">
+            <button id="check-btn">Check for Palindrome :)</button>
+        </form>
+        <p id="result"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+body{
+  background-color: rgb(253, 253, 177);
+}
+
+** end of styles.css **
+
+** start of script.js **
+
+const checkbtn = document.getElementById('check-btn');
+const inputText = document.getElementById('text-input');
+const resultPara = document.getElementById('result');
+const text = inputText.value;
+
+checkbtn.addEventListener('click', () => {
+const text = inputText.value;
+if (text === ``) {
+  alert("Please input a value")
+} palindromeCheck(text);
+})
+
+function palindromeCheck(msg){
+ 
+ const nonAlphaNumericChars = /[^a-zA-Z0-9]/g;
+ const alphaNumericCleanStr = msg.replace(nonAlphaNumericChars, '');
+ const lowerCaseStr = alphaNumericCleanStr.toLowerCase();
+ const strArr = lowerCaseStr.split('');
+ const reversedStrArr = strArr.reverse();
+ const reversedStr = reversedStrArr.join('');
+
+ if (reversedStr === lowerCaseStr){
+   resultPara.innerText = `${msg} is a palindrome`;
+ } else {
+   resultPara.innerText = `${msg} is not a palindrome`
+ }
+ console.log(reversedStr);console.log(lowerCaseStr); 
+ }
+
+** end of script.js ** */
 
